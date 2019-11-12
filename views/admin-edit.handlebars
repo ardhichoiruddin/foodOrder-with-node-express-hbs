@@ -1,0 +1,45 @@
+{{> adminHeader }}
+<div class="card shadow mb-4">
+
+    {{#each users}}
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Edit user {{ this.nama_user }}</h6>
+        </div>
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-8">
+
+                    <form action="/admin/update/{{ this.id_user }}" method="POST">
+                    
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Nama</label>
+                                <input type="text" name="nama" class="form-control" value="{{ this.nama_user }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Username</label>
+                                <input type="text" name="username" class="form-control" value="{{ this.username }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Jabatan</label>
+                                <select name="jabatan" id="" class="form-control kategori-edit" data-value="{{ this.jabatan }}">
+                                    <option value="manajer">Manajer</option>
+                                    <option value="staff">Staff</option>
+                                    <option value="admin">Admin</option>
+                                </select>
+                            </div>
+                          
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                    
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    {{/each}}
+</div>
+
+{{> adminFooter }}

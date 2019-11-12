@@ -1,0 +1,95 @@
+{{> adminHeader }}
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">{{ title }}</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <a href="" class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#exampleModalScrollable"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Data</a>
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th width="30">No</th>
+                        <th width="200">Gambar</th>
+                        <th>ID</th>
+                        <th>Nama</th>
+                        <th>Kategori</th>
+                        <th>Harga</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+              
+                <tbody>
+                    {{#each foods}}
+
+                        <tr>
+                            <td>1</td>
+                            <td><img src="/uploads/{{ this.food_image }}" alt="" width="150px"></td>
+                            <td>{{ this.id_produk }}</td>
+                            <td>{{ this.nama_produk }}</td>
+                            <td>{{ this.kategori }}</td>
+                            <td>{{ this.harga_produk }}</td>
+                            <td>
+                                <a href="/admin/foodmenu/{{ this.id_produk }}" title="edit data" class="btn btn-primary btn-circle btn-sm">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
+
+                                <a href="#" title="hapus data" class="btn btn-danger btn-circle btn-sm btn-delete" data-id="{{ this.id_produk }}" data-nama="{{ this.nama_produk }}">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                        </tr>
+
+                    {{/each}}
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="modal-title " id="exampleModalScrollableTitle">Tambah Menu Makanan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/admin/foodmenu/tambah-menu" method="POST" enctype="multipart/form-data">
+            <div class="modal-body">
+                <div class="form-group">
+                        <label for="exampleInputEmail1">Nama</label>
+                        <input type="text" class="form-control" name="nama" placeholder="masukan nama makanan atau minuman">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Upload Gambar</label>
+                        <br>
+                        <input type="file" name="upload_gambar">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Kategori</label>
+                        <select name="kategori" id="" class="form-control">
+                            <option value="makanan">Makanan</option>
+                            <option value="minuman">Minuman</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Harga</label>
+                        <input type="text" class="form-control" name="harga" placeholder="masukan harga makanan atau minuman">
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+{{> adminFooter }}

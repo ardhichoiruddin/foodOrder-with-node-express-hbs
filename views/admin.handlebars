@@ -1,0 +1,92 @@
+{{> adminHeader }}
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">{{ title }}</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <a href="" class="btn btn-primary btn-sm mb-3"  data-toggle="modal" data-target="#exampleModalScrollable"><i class="fa fa-plus" aria-hidden="true"></i> Tambah Data</a>
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th width="30">No</th>
+                        <th>ID User</th>
+                        <th>Nama</th>
+                        <th>Username</th>
+                        <th>Jabatan</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+              
+                <tbody>
+                    {{#each users}}
+                    <tr>
+                        <td>1</td>
+                        <td>{{ this.id_user }}</td>
+                        <td>{{ this.nama_user }}</td>
+                        <td>{{ this.username }}</td>
+                        <td>{{ this.jabatan }}</td>
+                        <td>
+                            <a href="/admin/{{ this.id_user }}" title="edit data" class="btn btn-primary btn-circle btn-sm">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            </a>
+
+                             <a href="#" title="hapus data" class="btn btn-danger btn-circle btn-sm btn-delete-m" data-id="{{ this.id_user }}" data-nama="{{ this.nama_user }}">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+
+                    {{/each}}
+                   
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <form action="/admin/admin/tambah-data" method="POST">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <h5 class="modal-title " id="exampleModalScrollableTitle">Tambah User</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                  <label for="exampleInputEmail1">Nama</label>
+                  <input type="text" class="form-control" name="nama" placeholder="masukan nama user">
+              </div>
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Username</label>
+                  <input type="text" class="form-control" name="username" placeholder="masukan username">
+              </div>
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Password</label>
+                  <input type="password" class="form-control" name="password" placeholder="masukan password">
+              </div>
+              <div class="form-group">
+                  <label for="exampleInputEmail1">Jabatan</label>
+                  <select name="jabatan" id="" class="form-control">
+                      <option value="manajer">Manajer</option>
+                      <option value="staff">Staff</option>
+                      <option value="admin">Admin</option>
+                  </select>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+{{> adminFooter }}
