@@ -6,8 +6,9 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 const express_handlebars_sections = require('express-handlebars-sections');
+const MySQLStore = require('express-mysql-session')(session);
 
-
+const db = require('./db');
 
 const minumanController = require('./controllers/minumanController');
 const makananController = require('./controllers/makananController');
@@ -19,6 +20,9 @@ const logOutController 	= require('./controllers/loginUser');
 
 
 const app = express();
+
+
+const sessionStore = new MySQLStore(db);
 
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
@@ -40,7 +44,8 @@ const redirectLogin = (req, res, next)=>{
 app.use(session({
 	secret: 'secret',
 	resave: false,
-	saveUninitialized: true
+	store: sessionStore,
+	saveUninitialized: false
 }));
 // Body-parser middleware
 app.use(express.json());

@@ -7,6 +7,7 @@ const db= mysql.createConnection({
   database : 'foodappppl'
 });
 
+
 const dbConnection = db.connect((err)=>{
     if(err){
         throw err;
