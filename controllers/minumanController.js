@@ -17,16 +17,4 @@ route.get('/', (req, res)=>{
 });
 
 
-route.get('/cart/:id', (req, res)=>{
-
-    const query = db.query("SELECT * FROM produk WHERE id_produk = " + id , (err, foods) => {
-
-        if (err) throw err;
-        
-        res.send(foods)
-    
-    });
-
-})
-
 module.exports = route

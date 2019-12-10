@@ -35,6 +35,48 @@ $(".button-quantity_inner").on("click", function() {
 // cart
 
 
+$(function(){
+
+
+  $('.checklists').change(function(){
+
+      if($(this).is(':checked')){
+
+         var xVal = $(this).val();
+
+        // $.ajax({
+        //   url : '/minuman/cart/:id',
+        //   type: 'GET',
+        //   dataType: 'json',
+        //   success: (data)=>{
+        //     console.log("ajax success")
+        //     console.log("hello")
+        //   }
+
+        // })
+
+        $.get(`/cart/${xVal}`)
+      }
+      else if(!$(this).is(":checked")){
+
+         var xVal = $(this).val();
+
+        $.get(`/cart/delete/${xVal}`)
+      }
+  })
+
+});
+
+
+// -------------
+
+function fetchProduct(done){
+  $.get('/showcart', function(data){
+      console.log(data)
+      done(data)
+  });
+}
+
 
 function createProductCard(foods){
   return $(`
@@ -62,36 +104,17 @@ function createProductCard(foods){
 
 $(function(){
 
+    let productList = $('#sidebar-carts');
 
-  let productList = $('#sidebar-carts');
+    fetchProduct(function(foods){
 
+      productList.empty();
 
-  $('.checklists').change(function(){
-
-      var xVal = $(this).val();
-
-      if($(this).is(':checked')){
-
-
-        // $.ajax({
-        //   url : '/minuman/cart/:id',
-        //   type: 'GET',
-        //   dataType: 'json',
-        //   success: (data)=>{
-        //     console.log("ajax success")
-        //     console.log("hello")
-        //   }
-
-        // })
-
-        $.get(`/makanan`, function(data,success){
-          
-          console.log(data)
-
-        })
+      for (food of foods){
+        productList.append(createProductCard(food))
       }
-  })
 
-  
+    })
+
 
 })

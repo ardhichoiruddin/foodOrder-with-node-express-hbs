@@ -4,7 +4,7 @@ const path = require('path');
 const multer = require('multer');
 const db = require('../db');
 const fs = require('fs');
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 
 
 // Manajemen User
