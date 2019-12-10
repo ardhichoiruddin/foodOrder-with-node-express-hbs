@@ -44,24 +44,39 @@ $(function(){
 
          var xVal = $(this).val();
 
-        // $.ajax({
-        //   url : '/minuman/cart/:id',
-        //   type: 'GET',
-        //   dataType: 'json',
-        //   success: (data)=>{
-        //     console.log("ajax success")
-        //     console.log("hello")
-        //   }
 
-        // })
+        $.get(`/cart/${xVal}`);
 
-        $.get(`/cart/${xVal}`)
+        let productList = $('#sidebar-carts');
+
+          fetchProduct(function(foods){
+
+            productList.empty();
+
+            for (food of foods){
+              productList.append(createProductCard(food))
+            }
+
+          })
+
+
       }
       else if(!$(this).is(":checked")){
 
-         var xVal = $(this).val();
+        var xVal = $(this).val();
 
-        $.get(`/cart/delete/${xVal}`)
+        
+        if(xVal === $(".cart-box .media").attr('data-id')){
+
+          console.log("delete html")
+
+          $(`.cart-box .media[data-id=${xVal}]`).remove();
+
+        }
+
+        $.get(`/cart/delete/${xVal}`);
+
+
       }
   })
 
@@ -81,7 +96,7 @@ function fetchProduct(done){
 function createProductCard(foods){
   return $(`
             
-    <div class="media">
+    <div class="media" data-id="${ foods.id_produk }">
         <img src="/uploads/${ foods.food_image }" class="align-self-start mr-3" alt="...">
         <div class="media-body">
             <h5 class="mt-0">${ foods.nama_produk }</h5>
