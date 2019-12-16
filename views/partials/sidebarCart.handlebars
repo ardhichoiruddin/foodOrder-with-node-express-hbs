@@ -47,10 +47,10 @@
 
         <div class="total">
             <label for="">Nama Pemesan</label>
-            <input type="text" placeholder="Masukan nama pemesan" class="form-control">
+            <input type="text" name="nama-pemesan" placeholder="Masukan nama pemesan" class="form-control">
             <br>
             <label for="">Pilih Nomor Meja</label>
-            <select name="" id="" class="form-control">
+            <select name="nomor-meja" id="" class="form-control nomor-meja">
                 <option value="">1</option>
                 <option value="">2</option>
                 <option value="">3</option>
@@ -60,10 +60,10 @@
             <br>
             <div class="boxs">
                 <label class="m-0">Total</label>
-                <h3>Rp. 34,000</h3>
+                <h3>Rp. <span id="sumSidebar">0</span></h3>
             </div>
         </div>
     </div>
 
-    <button class="btn btn-cf btn-primary">Pesan Sekarang</button>
+    <a href="#" class="btn btn-cf btn-primary btn-goOrder">Pesan Sekarang</a>
 </div>

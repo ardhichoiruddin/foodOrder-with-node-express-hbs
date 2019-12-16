@@ -18,4 +18,17 @@ route.get('/delete/:id', (req, res)=>{
 	})
 })
 
+route.post('/tambahtrans',(req, res, next) => {
+
+
+  const query = db.query("INSERT INTO transaksi set ?", req.body, (err) => {
+
+    if (err) throw err;
+
+    res.redirect('/order');
+
+  })
+
+});
+
 module.exports = route
