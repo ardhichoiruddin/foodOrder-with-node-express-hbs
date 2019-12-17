@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 10, 2019 at 11:23 AM
+-- Generation Time: Dec 17, 2019 at 01:10 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -31,6 +31,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `cart` (
   `id_produk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id_produk`) VALUES
+(7),
+(9),
+(11),
+(6),
+(5),
+(6),
+(5);
 
 -- --------------------------------------------------------
 
@@ -95,10 +108,25 @@ INSERT INTO `produk` (`id_produk`, `nama_produk`, `kategori`, `harga_produk`, `f
 
 CREATE TABLE `transaksi` (
   `id_transaksi` int(11) NOT NULL,
+  `nama_pemesan` text NOT NULL,
   `id_produk` int(11) NOT NULL,
-  `id_pemesan` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL
+  `nomor_meja` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `total_harga` int(120) NOT NULL,
+  `status` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`id_transaksi`, `nama_pemesan`, `id_produk`, `nomor_meja`, `quantity`, `tanggal`, `total_harga`, `status`) VALUES
+(2343, '', 7, 0, 2, '2019-12-17', 42000, 'ditolak'),
+(2343, '', 9, 0, 2, '2019-12-17', 42000, 'ditolak'),
+(2343, '', 11, 0, 2, '2019-12-17', 42000, 'ditolak'),
+(2343, '', 6, 0, 2, '2019-12-17', 42000, 'ditolak'),
+(2343, '', 5, 0, 2, '2019-12-17', 42000, 'ditolak');
 
 -- --------------------------------------------------------
 
