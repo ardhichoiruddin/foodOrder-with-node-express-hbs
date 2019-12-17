@@ -1,0 +1,49 @@
+{{> staffHeader }}
+
+<div class="container mt-3 mb-4">
+
+    <div class="max-width-staff">
+    {{#each foods}}
+        <div class="staf-box">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="staf-box__inner d-flex align-items-center justify-content-between">
+                        <div class="media">
+                            <img src="/uploads/{{ this.food_image }}" class="mr-3" alt="">
+                            <div class="media-body">
+                                <h5 class="mt-0">{{ this.nama_produk }}</h5>
+                                <table>
+                                    <tr>
+                                        <td width="80">Jumlah</td>
+                                        <td>{{ this.quantity }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total</td>
+                                        <td>Rp. <span>{{ this.harga_produk }}</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div>
+                        <div class="no-meja">
+                            <label class="mb-1" for="">Nomor Meja</label>
+                            <h2>{{ this.nomor_meja }}</h2>
+                        </div>
+                        <div class="total">
+                            <label class="mb-1" for="">Total</label>
+                            <h2>Rp. <span>{{ this.total_harga }}</span></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+
+    </div>
+
+</div>
+
+{{> staffFooter }}

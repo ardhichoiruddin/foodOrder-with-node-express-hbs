@@ -1,36 +1,36 @@
-$(".button-quantity_inner").on("click", function() {
+// $(".button-quantity_inner").on("click", function() {
 
-    var $button = $(this);
-    var oldValue = $button.parent().find("input").val();
-    console.log("Hell")
-    console.log(oldValue)
+//     var $button = $(this);
+//     var oldValue = $button.parent().find("input").val();
+//     console.log("Hell")
+//     console.log(oldValue)
   
-    if ($button.text() === "+") {
-        var newVal = parseFloat(oldValue) + 1;
-        console.log("add")
-      } else {
-     // Don't allow decrementing below zero
-      if (oldValue > 0) {
-        var newVal = parseFloat(oldValue) - 1;
-      } else {
-        newVal = 0;
-      }
-    }
+//     if ($button.text() === "+") {
+//         var newVal = parseFloat(oldValue) + 1;
+//         console.log("add")
+//       } else {
+//      // Don't allow decrementing below zero
+//       if (oldValue > 0) {
+//         var newVal = parseFloat(oldValue) - 1;
+//       } else {
+//         newVal = 0;
+//       }
+//     }
   
-    $button.parent().find("input").val(newVal);
+//     $button.parent().find("input").val(newVal);
   
-  });
+//   });
 
 
-  $('.btn-cf').click(function(){
+//   $('.btn-cf').click(function(){
 
-    Swal.fire({
-        title: '<strong>Selamat!</strong>',
-        text: 'Orderan anda sudah terkirim ke chief. silakan menunggu di tempat duduk sesuai nomor yang anda masukan dalam order tadi',
-        type: 'success',
-      });
+//     Swal.fire({
+//         title: '<strong>Selamat!</strong>',
+//         text: 'Orderan anda sudah terkirim ke chief. silakan menunggu di tempat duduk sesuai nomor yang anda masukan dalam order tadi',
+//         type: 'success',
+//       });
 
-});
+// });
 
 // cart
 
@@ -175,24 +175,11 @@ fetchProduct(function(food){
 
       }
 
+     
       $('#sumSidebar').html(sum)
 
 
-})
-
-
-$('#sidebar-carts .media-body').change(function(){
-
-
-
-
-    // var priceSum = 0;
-
-    // $(this).find('.price').each(function(){
-    //     console.log($(this).html())
-    // })
-
-})
+});
 
 
 // click order
@@ -203,20 +190,9 @@ $('.btn-goOrder').click(function(){
   var nama = $('input[name=nama-pemesan]').val();
   var nomorMeja = $('select.nomor-meja option:selected').val();
   var jumlahHarga = $('#sumSidebar').html();
-
-  var jumlahPesanan = [];
-  var id_pesan = [];
+  var harga = $('.media .price').html();
 
   console.log(nomorMeja)
-
-  var today = new Date().toLocaleDateString(undefined, {
-    year: 'numeric',
-    day: '2-digit',
-    month: '2-digit',
-    
-  })
-
-  console.log(today)
 
   var data ={
 
@@ -225,7 +201,8 @@ $('.btn-goOrder').click(function(){
     id_produk : '',
     nomor_meja : nomorMeja,
     quantity : '',
-    tanggal : today,
+    tanggal : '',
+    total_harga : '',
     status : 'menunggu'
 
   }
@@ -234,6 +211,8 @@ $('.btn-goOrder').click(function(){
 
     data.id_produk = $(this).attr('data-id');
     data.quantity = $(this).find('input[name=jumlah-food]').val();
+
+    data.total_harga = harga * data.quantity;
     
     $.post('/cart/tambahtrans', data);
    
