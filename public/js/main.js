@@ -196,7 +196,7 @@ $('.btn-goOrder').click(function(){
 
   var data ={
 
-    id_transaksi : id_transaksi,
+    id_transaksi : uuidv1(),
     nama_pemesan : nama,
     id_produk : '',
     nomor_meja : nomorMeja,
@@ -215,7 +215,12 @@ $('.btn-goOrder').click(function(){
     data.total_harga = harga * data.quantity;
     
     $.post('/cart/tambahtrans', data);
-   
+    
+     Swal.fire({
+          title: '<strong>Selamat!</strong>',
+          text: 'Orderan anda sudah terkirim ke chief. silakan menunggu di tempat duduk sesuai nomor yang anda masukan dalam order tadi',
+          type: 'success',
+      });
 
   })
 
