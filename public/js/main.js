@@ -61,7 +61,7 @@ $(function(){
 
         fetchProduct(function(food){
 
-        var sum = 0;
+              var sum = 0;
 
               for (price of food){
                   var x = price.harga_produk;

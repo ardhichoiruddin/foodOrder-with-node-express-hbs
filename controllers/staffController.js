@@ -6,7 +6,7 @@ const db = require('../db');
 
 router.get('/', (req,res) => {
 
-    const querys = db.query("SELECT p.nama_produk, p.food_image, p.harga_produk, t.id_transaksi, t.quantity, t.total_harga, t.nomor_meja, t.total_harga FROM produk AS p INNER JOIN transaksi AS t ON p.id_produk = t.id_produk AND t.status = 'menunggu'", (err, foods) => {
+    const querys = db.query("SELECT p.nama_produk, p.food_image, p.harga_produk, t.id_transaksi, t.nama_pemesan, t.quantity, t.total_harga, t.nomor_meja, t.total_harga FROM produk AS p INNER JOIN transaksi AS t ON p.id_produk = t.id_produk AND t.status = 'menunggu'", (err, foods) => {
 	    if (err) throw err;
 	    res.render('staff', {
 	      title: "Menunggu",
