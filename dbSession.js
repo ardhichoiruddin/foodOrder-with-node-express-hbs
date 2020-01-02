@@ -11,8 +11,8 @@ const dbSession = {
     checkExpirationInterval: 900000,
     expiration: 86400000,
     createDatabaseTable: true,
-    connectionLimit: 1,
-    endConnectionOnClose: true,
+    connectionLimit: 4,
+    endConnectionOnClose: false,
     charset: 'utf8mb4_bin',
     schema: {
         tableName: 'sessions',
