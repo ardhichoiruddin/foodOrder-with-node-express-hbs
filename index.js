@@ -6,10 +6,11 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
 const express_handlebars_sections = require('express-handlebars-sections');
+const MySQLStore = require('express-mysql-session')(session);
 
 // const MySQLStore = require('express-mysql-session')(session);
 
-const db = require('./db');
+const dbSession = require('./dbSession');
 
 const minumanController = require('./controllers/minumanController');
 const makananController = require('./controllers/makananController');
@@ -25,13 +26,24 @@ const showCartController = require('./controllers/showCartController');
 const app = express();
 
 
-// const sessionStore = new MySQLStore(db);
+const sessionStore = new MySQLStore(dbSession);
 
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
     defaultLayout: 'main'
 }));
 app.set('view engine', 'handlebars');
+
+// express session
+app.use(session({
+	secret: 'secret',
+	resave: false,
+	store: sessionStore,
+	saveUninitialized: false
+}));
+// Body-parser middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended : false }));
 
 
 // Redirect login
@@ -42,17 +54,6 @@ const redirectLogin = (req, res, next)=>{
 		next();
 	}
 }
-
-// express session
-app.use(session({
-	secret: 'secret',
-	resave: false,
-	// store: sessionStore,
-	saveUninitialized: true
-}));
-// Body-parser middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended : false }));
 
 
 app.get('/', (req, res) =>{
