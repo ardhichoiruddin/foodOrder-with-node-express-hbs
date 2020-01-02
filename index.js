@@ -48,7 +48,7 @@ app.use(session({
 	secret: 'secret',
 	resave: false,
 	// store: sessionStore,
-	saveUninitialized: false
+	saveUninitialized: true
 }));
 // Body-parser middleware
 app.use(express.json());
