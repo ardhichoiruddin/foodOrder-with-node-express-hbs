@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 17, 2019 at 01:10 PM
+-- Generation Time: Jan 13, 2020 at 03:43 PM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -37,13 +37,12 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id_produk`) VALUES
-(7),
-(9),
-(11),
-(6),
-(5),
-(6),
-(5);
+(3),
+(2),
+(3),
+(2),
+(3),
+(2);
 
 -- --------------------------------------------------------
 
@@ -103,6 +102,25 @@ INSERT INTO `produk` (`id_produk`, `nama_produk`, `kategori`, `harga_produk`, `f
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
+  `expires` int(11) UNSIGNED NOT NULL,
+  `data` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`session_id`, `expires`, `data`) VALUES
+('WAoFW5Rng6Ro_3z2IK0Y1jXnZa5Rms_6', 1579010921, '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"username\":\"direktur\"}');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `transaksi`
 --
 
@@ -116,17 +134,6 @@ CREATE TABLE `transaksi` (
   `total_harga` int(120) NOT NULL,
   `status` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `transaksi`
---
-
-INSERT INTO `transaksi` (`id_transaksi`, `nama_pemesan`, `id_produk`, `nomor_meja`, `quantity`, `tanggal`, `total_harga`, `status`) VALUES
-(2343, '', 7, 0, 2, '2019-12-17', 42000, 'ditolak'),
-(2343, '', 9, 0, 2, '2019-12-17', 42000, 'ditolak'),
-(2343, '', 11, 0, 2, '2019-12-17', 42000, 'ditolak'),
-(2343, '', 6, 0, 2, '2019-12-17', 42000, 'ditolak'),
-(2343, '', 5, 0, 2, '2019-12-17', 42000, 'ditolak');
 
 -- --------------------------------------------------------
 
@@ -149,7 +156,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `nama_user`, `username`, `password`, `jabatan`) VALUES
 (8, 'admin', 'admin', 'admin', 'admin'),
 (10, 'Staff', 'staff', 'staff', 'staff'),
-(11, 'Manajer', 'manajer', 'manajer', 'manajer');
+(11, 'Manajer', 'manajer', 'manajer', 'manajer'),
+(12, 'Direktur', 'direktur', 'direktur', 'direktur');
 
 --
 -- Indexes for dumped tables
@@ -166,6 +174,12 @@ ALTER TABLE `pemesan`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id_produk`);
+
+--
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`session_id`);
 
 --
 -- Indexes for table `user`
@@ -193,7 +207,7 @@ ALTER TABLE `produk`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
