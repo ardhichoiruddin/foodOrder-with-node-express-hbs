@@ -21,6 +21,7 @@ const loginController 	= require('./controllers/loginUser');
 const logOutController 	= require('./controllers/loginUser');
 const cartController 	= require('./controllers/cartController');
 const showCartController = require('./controllers/showCartController');
+const direkturController = require('./controllers/direkturController');
 
 
 const app = express();
@@ -81,6 +82,7 @@ app.use('/login', loginController);
 app.use('/logout', logOutController);
 app.use('/cart', cartController);
 app.use('/showcart', showCartController);
+app.use('/direktur',redirectLogin, direkturController);
 
 
 

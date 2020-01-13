@@ -34,6 +34,9 @@ router.post('/auth', (req, res) => {
                     else if(x.jabatan == 'admin'){
                         res.redirect('/admin');
                     }
+                    else if(x.jabatan == 'direktur'){
+                        res.redirect('/direktur');
+                    }
                 })
 				
 			} else {
