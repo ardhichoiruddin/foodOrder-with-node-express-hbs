@@ -1,0 +1,26 @@
+<table>
+	<?php for i = 0; i>11 ; i++  ?> // i = bulan; untuk bulannya
+	<tr>
+
+		<?php for ii = 0; ii>11 ; ii++  ?> // i = produk; untuk transaksi per produk yang disetujui
+		<td>
+		<?php 
+				echo SELECT SUM(quantity) FROM (SELECT * FROM `transaksi` WHERE month(tanggal) = $i AND status = 'disetujui' AND id_produk = $ii) t1 
+
+			?>
+		</td>
+		<?php end for each	?> 
+
+		<td>
+		<?php 
+				echo SELECT SUM(total_harga) FROM (SELECT * FROM `transaksi` WHERE month(tanggal) = 1 AND status = 'disetujui') t2 
+
+			?>
+		</td>
+		
+		<td>
+				<a href="#">Lihat Detail</a>
+		</td>
+		</tr>
+	<?php endfor ?>
+</tabl>

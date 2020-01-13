@@ -194,6 +194,8 @@ $('.btn-goOrder').click(function(){
 
   console.log(nomorMeja)
 
+  console.log(uuidv1)
+
   var data ={
 
     id_transaksi : uuidv1(),
