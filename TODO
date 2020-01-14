@@ -1,0 +1,10 @@
+[frontend]
+fix front end add, update & delete in add to cart process
+
+[manajer]
+presents data from database  to manajer
+presents data from database  to manajer/bulan
+presents data from database  to manajer/bulan/hari
+
+[database]
+redesign database especially in transaction process
